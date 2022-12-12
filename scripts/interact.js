@@ -1,14 +1,14 @@
 const {ethers, BigNumber, Contract, utils} = require("ethers");
-require('dotenv').config()
+require('dotenv').config("../.env")
 const MUMBAI_PROVIDER=new ethers.providers.JsonRpcProvider(process.env.QUICKNODE_HTTP_URL);
 const WALLET_ADDRESS = process.env.WALLET_ADDRESS;
 const WALLET_PRIVATE_KEY=process.env.PRIVATE_KEY;
-const {tokenabi, abi} = require("../constants/index.js");
+const {tokenabi, abi} = require("../constants/index");
 
 const wallet = new ethers.Wallet(WALLET_PRIVATE_KEY);
 const connectedWallet = wallet.connect(MUMBAI_PROVIDER);
-
-const swapsAddress = "0x65ec79614f6487461CBc2c30941EA783E50e0373";
+//0x65ec79614f6487461CBc2c30941EA783E50e0373
+const swapsAddress = "0x742B19Ace9B406b53F5c568ff09dded18a019776";
 const MATIC_ADDRESS="0x9c3C9283D3e44854697Cd22D3Faa240Cfb032889";
 const CT_ADDRESS="0xB2E82ecd63861BBc39D7A95211112EB464d5CD25";
 
@@ -21,7 +21,9 @@ async function main(){
 
     const approvalResponse = await wmaticContract.connect(connectedWallet).approve(swapsAddress,"4100000000000000");
     await approvalResponse.wait();
-    const tx = await swapsContract.connect(connectedWallet).swapExactInputSingle(
+    let tx = swapsContract.connect(connectedWallet)
+    
+    tx = await tx.swapExactInputSingle(
         BigInt(4e14),
         //above number is how much u will input
         // MATIC_ADDRESS,
