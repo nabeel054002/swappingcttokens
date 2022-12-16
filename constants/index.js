@@ -11,30 +11,29 @@ const abi =[
     "type": "constructor"
   },
   {
-    "inputs": [],
-    "name": "DAI",
-    "outputs": [
+    "anonymous": false,
+    "inputs": [
       {
+        "indexed": false,
         "internalType": "address",
-        "name": "",
+        "name": "swapper",
         "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "quantity",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "timestamp",
+        "type": "uint256"
       }
     ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "WETH9",
-    "outputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
+    "name": "swapsImplemented",
+    "type": "event"
   },
   {
     "inputs": [],
@@ -55,6 +54,16 @@ const abi =[
         "internalType": "uint256",
         "name": "amountIn",
         "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "coinIn",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "coinOut",
+        "type": "address"
       }
     ],
     "name": "swapExactInputSingle",
@@ -65,31 +74,7 @@ const abi =[
         "type": "uint256"
       }
     ],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "amountOut",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "amountInMaximum",
-        "type": "uint256"
-      }
-    ],
-    "name": "swapExactOutputSingle",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "amountIn",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "nonpayable",
+    "stateMutability": "payable",
     "type": "function"
   },
   {
